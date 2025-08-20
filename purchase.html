@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase - Raiban Electrical Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <img src="logo.png" alt="Raiban Electrical Solutions" width="40" height="40" class="me-2">
+        Raiban Electrical Solutions
+      </a>
+      <div>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="purchase.html">Purchase</a></li>
+          <li class="nav-item"><a class="nav-link" href="issue.html">Issue</a></li>
+          <li class="nav-item"><a class="nav-link" href="return.html">Return</a></li>
+          <li class="nav-item"><a class="nav-link" href="consumption.html">Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Purchase Form -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">🛒 New Purchase Entry</h2>
+    
+    <!-- Success Message -->
+    <div id="successMessage" class="alert alert-success d-none" role="alert">
+      ✅ Purchase successfully recorded!
+    </div>
+
+    <div class="card p-4 shadow-lg">
+      <form id="purchaseForm">
+        <div class="mb-3">
+          <label class="form-label">Supplier Name</label>
+          <input type="text" class="form-control" id="supplierName" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Supplier GST No</label>
+          <input type="text" class="form-control" id="supplierGst" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Contract No</label>
+          <input type="text" class="form-control" id="contractNo" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-control" id="location" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Material Name</label>
+          <input type="text" class="form-control" id="materialName" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Material Code</label>
+          <input type="text" class="form-control" id="materialCode" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Material Quantity</label>
+          <input type="number" class="form-control" id="materialQuantity" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Material Unit</label>
+          <select class="form-select" id="materialUnit" required>
+            <option value="">-- Select Unit --</option>
+            <option value="pcs">Pieces</option>
+            <option value="kg">Kg</option>
+            <option value="liter">Liter</option>
+            <option value="meter">Meter</option>
+            <option value="km">Km</option>
+            <option value="box">Box</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Price</label>
+          <input type="number" step="0.01" class="form-control" id="price" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Payment Type</label>
+          <select class="form-select" id="paymentType" required>
+            <option value="">-- Select Payment Type --</option>
+            <option value="paid">Paid</option>
+            <option value="unpaid">Unpaid</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Purchase Date</label>
+          <input type="date" class="form-control" id="purchaseDate" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Record Purchase</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+</html>

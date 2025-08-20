@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Return Stock - Raiban Electrical Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <img src="logo.png" alt="Raiban Electrical Solutions" width="40" height="40" class="me-2">
+        Raiban Electrical Solutions
+      </a>
+      <div>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="purchase.html">Purchase</a></li>
+          <li class="nav-item"><a class="nav-link" href="issue.html">Issue</a></li>
+          <li class="nav-item"><a class="nav-link active" href="return.html">Return</a></li>
+          <li class="nav-item"><a class="nav-link" href="consumption.html">Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Return Form -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">🔄 Return Stock from Contractor</h2>
+
+    <!-- Success Message -->
+    <div id="returnSuccess" class="alert alert-success d-none" role="alert">
+      ✅ Stock returned successfully!
+    </div>
+
+    <div class="card p-4 shadow-lg">
+      <form id="returnForm">
+        <!-- Position (Store Incharge) -->
+        <div class="mb-3">
+          <label class="form-label">Position (Store Incharge)</label>
+          <select class="form-select" id="returnPosition" required>
+            <option value="">-- Select Position --</option>
+            <option value="incharge1">Store Incharge 1</option>
+            <option value="incharge2">Store Incharge 2</option>
+          </select>
+        </div>
+
+        <!-- Contractor Name -->
+        <div class="mb-3">
+          <label class="form-label">Contractor Name</label>
+          <select class="form-select" id="returnContractor" required>
+            <option value="">-- Select Contractor --</option>
+            <option value="contractor1">Contractor A</option>
+            <option value="contractor2">Contractor B</option>
+            <option value="contractor3">Contractor C</option>
+          </select>
+        </div>
+
+        <!-- Material -->
+        <div class="mb-3">
+          <label class="form-label">Material</label>
+          <select class="form-select" id="returnMaterial" required>
+            <option value="">-- Select Material --</option>
+            <option value="cable">Cable</option>
+            <option value="switch">Switch</option>
+            <option value="fuse">Fuse</option>
+            <option value="bulb">Bulb</option>
+          </select>
+        </div>
+
+        <!-- Consumed Quantity -->
+        <div class="mb-3 row">
+          <div class="col-md-8">
+            <label class="form-label">Consumed Quantity</label>
+            <input type="number" class="form-control" id="consumedQuantity" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Unit</label>
+            <select class="form-select" id="consumedUnit" required>
+              <option value="">-- Select Unit --</option>
+              <option value="pcs">Pieces</option>
+              <option value="mtr">Meter</option>
+              <option value="kg">Kilogram</option>
+              <option value="ltr">Liter</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Returning Quantity -->
+        <div class="mb-3 row">
+          <div class="col-md-8">
+            <label class="form-label">Returning Quantity</label>
+            <input type="number" class="form-control" id="returnQuantity" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Unit</label>
+            <select class="form-select" id="returnUnit" required>
+              <option value="">-- Select Unit --</option>
+              <option value="pcs">Pieces</option>
+              <option value="mtr">Meter</option>
+              <option value="kg">Kilogram</option>
+              <option value="ltr">Liter</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Old Stock Returned -->
+        <div class="mb-3 row">
+          <div class="col-md-8">
+            <label class="form-label">Old Stock Returned</label>
+            <input type="number" class="form-control" id="oldStock" placeholder="Enter if contractor returned old material">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Unit</label>
+            <select class="form-select" id="oldStockUnit">
+              <option value="">-- Select Unit --</option>
+              <option value="pcs">Pieces</option>
+              <option value="mtr">Meter</option>
+              <option value="kg">Kilogram</option>
+              <option value="ltr">Liter</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-control" id="returnDate" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-warning w-100">Return Stock</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+</html>
