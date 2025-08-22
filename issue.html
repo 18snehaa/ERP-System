@@ -4,34 +4,194 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Issue Stock - Raiban Electrical Solutions</title>
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f9;
+      font-size: 0.92rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #0d1b2a;
+      padding: 12px 0;
+    }
+    .navbar-brand {
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .navbar-brand img {
+      height: 38px;
+      margin-right: 8px;
+    }
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      margin: 0 12px;
+      transition: 0.3s;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #66c0f4 !important;
+      border-bottom: 2px solid #66c0f4;
+    }
+
+    /* Page Header */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+    h2 {
+      font-weight: 600;
+      color: #0d1b2a;
+      font-size: 1.5rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .date-input {
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      border: 1px solid #ddd;
+    }
+    .btn-print {
+      background: #ff6600;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .btn-print:hover {
+      background: #e65c00;
+    }
+
+    /* Card & Form */
+    .card {
+      border: none;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 9px;
+      font-size: 0.9rem;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #66c0f4;
+      box-shadow: 0 0 0 0.2rem rgba(102,192,244,0.25);
+    }
+
+    /* Buttons */
+    .btn-issue {
+      background: #0d1b2a;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+    .btn-issue:hover {
+      background: #132c46;
+    }
+
+    /* Success Alert */
+    #issueSuccess {
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">
-        <img src="logo.png" alt="Raiban Electrical Solutions" width="40" height="40" class="me-2">
-        Raiban Electrical Solutions
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="RLogo.png" alt="Logo">
+        <span>Raiban Electrical Solutions</span>
       </a>
-      <div>
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="purchase.html">Purchase</a></li>
-          <li class="nav-item"><a class="nav-link active" href="issue.html">Issue</a></li>
-          <li class="nav-item"><a class="nav-link" href="return.html">Return</a></li>
-          <li class="nav-item"><a class="nav-link" href="consumption.html">Consumption</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa fa-home"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="purchase.html"><i class="fa fa-shopping-cart"></i> Purchase</a></li>
+          <li class="nav-item"><a class="nav-link active" href="issue.html"><i class="fa fa-share-square"></i> Issue</a></li>
+          <li class="nav-item"><a class="nav-link" href="return.html"><i class="fa fa-undo"></i> Return</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html"><i class="fa fa-box"></i> Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="form.html"><i class="fa fa-user-tie"></i> Site Engineer & Contractor</a></li>
+          <li class="nav-item"><a class="nav-link" href="generatereport.html"><i class="fa fa-chart-line"></i> Generate Report</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Issue Form -->
-  <div class="container my-5">
-    <h2 class="text-center mb-4">📦 Issue Stock to Contractor</h2>
+  <!-- Page Header -->
+<div class="container">
+  <div class="page-header">
+    <div class="d-flex align-items-center gap-3">
+      <!-- Back Button -->
+      <button onclick="window.history.back()" class="btn btn-outline-secondary btn-sm rounded-pill">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
 
+      <h2><i class="bi bi-box-arrow-up"></i> Issue Stock to Contractor</h2>
+    </div>
+
+    <div class="header-actions">
+      <input type="date" class="date-input" id="headerDate">
+      <button onclick="window.print()" class="btn btn-print">
+        <i class="bi bi-printer"></i> Print
+      </button>
+    </div>
+  </div>
+</div>
+
+  <!-- Issue Form -->
+  <div class="container my-4">
     <!-- Success Message -->
     <div id="issueSuccess" class="alert alert-success d-none" role="alert">
       ✅ Stock issued successfully!
@@ -39,57 +199,44 @@
 
     <div class="card p-4 shadow-lg">
       <form id="issueForm">
-        <!-- Store Incharge -->
         <div class="mb-3">
-          <label class="form-label">Store Incharge</label>
-          <input type="text" class="form-control" id="storeIncharge" placeholder="Enter Store Incharge Name" required>
+          <label class="form-label"><i class="bi bi-person-badge"></i> Store Incharge</label>
+          <input type="text" class="form-control" id="storeIncharge" required>
         </div>
-
-        <!-- Site Incharge -->
         <div class="mb-3">
-          <label class="form-label">Site Incharge</label>
-          <input type="text" class="form-control" id="siteIncharge" placeholder="Enter Site Incharge Name" required>
+          <label class="form-label"><i class="bi bi-person-workspace"></i> Site Incharge</label>
+          <input type="text" class="form-control" id="siteIncharge" required>
         </div>
-
-        <!-- Contractor Name -->
         <div class="mb-3">
-          <label class="form-label">Contractor Name</label>
-          <input type="text" class="form-control" id="contractor" placeholder="Enter Contractor Name" required>
+          <label class="form-label"><i class="bi bi-person-circle"></i> Contractor Name</label>
+          <input type="text" class="form-control" id="contractor" required>
         </div>
-
-        <!-- Location -->
         <div class="mb-3">
-          <label class="form-label">Location</label>
-          <input type="text" class="form-control" id="location" placeholder="Enter Location" required>
+          <label class="form-label"><i class="bi bi-geo-alt"></i> Location</label>
+          <input type="text" class="form-control" id="location" required>
         </div>
-
-        <!-- Sub Division -->
         <div class="mb-3">
-          <label class="form-label">Sub Division</label>
-          <input type="text" class="form-control" id="subDivision" placeholder="Enter Sub Division" required>
+          <label class="form-label"><i class="bi bi-diagram-3"></i> Sub Division</label>
+          <input type="text" class="form-control" id="subDivision" required>
         </div>
-
-        <!-- Division -->
         <div class="mb-3">
-          <label class="form-label">Division</label>
-          <input type="text" class="form-control" id="division" placeholder="Enter Division" required>
+          <label class="form-label"><i class="bi bi-building"></i> Division</label>
+          <input type="text" class="form-control" id="division" required>
         </div>
-
-        <!-- Circle -->
         <div class="mb-3">
-          <label class="form-label">Circle</label>
-          <input type="text" class="form-control" id="circle" placeholder="Enter Circle" required>
+          <label class="form-label"><i class="bi bi-circle"></i> Circle</label>
+          <input type="text" class="form-control" id="circle" required>
         </div>
-
-        <!-- Material -->
         <div class="mb-3">
-          <label class="form-label">Material Name</label>
-          <input type="text" class="form-control" id="material" placeholder="Enter Material Name" required>
+          <label class="form-label"><i class="bi bi-upc-scan"></i> Material Code</label>
+          <input type="text" class="form-control" id="materialCode" required>
         </div>
-
-        <!-- Unit -->
         <div class="mb-3">
-          <label class="form-label">Unit</label>
+          <label class="form-label"><i class="bi bi-box-seam"></i> Material Name</label>
+          <input type="text" class="form-control" id="material" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-rulers"></i> Unit</label>
           <select class="form-select" id="unit" required>
             <option value="">-- Select Unit --</option>
             <option value="pcs">Pieces</option>
@@ -98,25 +245,29 @@
             <option value="ltr">Litre</option>
           </select>
         </div>
-
-        <!-- Quantity -->
         <div class="mb-3">
-          <label class="form-label">Quantity</label>
+          <label class="form-label"><i class="bi bi-123"></i> Quantity</label>
           <input type="number" class="form-control" id="quantity" required>
         </div>
-
-        <!-- Date -->
-        <div class="mb-3">
-          <label class="form-label">Date</label>
-          <input type="date" class="form-control" id="date" required>
-        </div>
-
-        <button type="submit" class="btn btn-success w-100">Issue Stock</button>
+        <button type="submit" class="btn btn-issue w-100"><i class="bi bi-check-circle"></i> Issue Stock</button>
       </form>
     </div>
   </div>
 
-  <!-- External Script -->
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Main JS -->
+  <script>
+    // ✅ Auto-fill today's date in header date picker
+    document.addEventListener("DOMContentLoaded", () => {
+      const dateInput = document.getElementById("headerDate");
+      if (dateInput) {
+        const today = new Date().toISOString().split("T")[0];
+        dateInput.value = today;
+      }
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
