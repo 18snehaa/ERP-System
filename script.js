@@ -1,103 +1,124 @@
-// script.js
+// Common JS for all pages
 document.addEventListener("DOMContentLoaded", () => {
+  /** -------------------------
+   * Load Navbar + Header
+   * ------------------------- */
+  const headerEl = document.getElementById("header-placeholder");
 
-  // ========== NAVBAR ACTIVE LINK ==========
-  const navLinks = document.querySelectorAll(".nav-link");
-  const currentPath = window.location.pathname.split("/").pop();
+  if (headerEl) {
+    // Current file name
+    const currentPage = window.location.pathname.split("/").pop();
 
-  navLinks.forEach(link => {
-    if (link.getAttribute("href") === currentPath) {
-      link.classList.add("active");
-    }
-  });
+    // Pages that should use form-header.html
+    const formPages = [
+      "site_engineer.html",
+      "add_contractor.html",
+      "add_product.html",   // ✅ fixed name
+      "add_supplier.html",  // ✅ fixed name
+      "forms.html"
+    ];
 
-  // ========== REUSABLE MODERN DATE PICKER ==========
-  function setupDatePicker(displayId, textId, inputId) {
-    const dateDisplay = document.getElementById(displayId);
-    const dateText = document.getElementById(textId);
-    const dateInput = document.getElementById(inputId);
+    const headerFile = formPages.includes(currentPage)
+      ? "form-header.html"
+      : "header.html";
 
-    if (dateDisplay && dateText && dateInput) {
-      const today = new Date();
-      dateText.textContent = today.toLocaleDateString("en-GB", {
-        weekday: "short",
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-      });
-      dateInput.valueAsDate = today;
+    fetch(headerFile)
+      .then(res => res.text())
+      .then(data => {
+        headerEl.innerHTML = data;
 
-      // Click badge → open picker
-      dateDisplay.style.cursor = "pointer";
-      dateDisplay.addEventListener("click", () => dateInput.showPicker());
+        /** -------------------------
+         * Highlight active link
+         * ------------------------- */
+        document.querySelectorAll(".nav-item").forEach(link => {
+          if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
 
-      // Update badge when date chosen
-      dateInput.addEventListener("change", () => {
-        const selected = new Date(dateInput.value);
-        if (!isNaN(selected)) {
-          dateText.textContent = selected.toLocaleDateString("en-GB", {
-            weekday: "short",
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
+        /** -------------------------
+         * Date Picker in Header
+         * ------------------------- */
+        const datePicker = document.getElementById("datePicker");
+        const dateBadge = document.getElementById("dateBadge");
+
+        if (datePicker && dateBadge) {
+          const options = { day: "2-digit", month: "short", year: "numeric" };
+
+          // ✅ Default: show "Choose Date" until user selects
+          dateBadge.textContent = "📅 Choose Date";
+
+          // Open picker when badge clicked
+          dateBadge.addEventListener("click", () => {
+            datePicker.showPicker ? datePicker.showPicker() : datePicker.click();
+          });
+
+          // Update badge when date changes
+          datePicker.addEventListener("change", () => {
+            const selectedDate = new Date(datePicker.value);
+            if (!isNaN(selectedDate)) {
+              dateBadge.textContent = selectedDate.toLocaleDateString("en-GB", options);
+            }
           });
         }
-      });
-    }
+      })
+      .catch(err => console.error("Navbar load error:", err));
   }
 
-  // Apply date picker setup for all main pages
-  setupDatePicker("purchaseDateDisplay", "purchaseDateText", "purchaseDateInput");
-  setupDatePicker("issueDateDisplay", "issueDateText", "issueDateInput");
-  setupDatePicker("returnDateDisplay", "returnDateText", "returnDateInput");
-  setupDatePicker("productsDateDisplay", "productsDateText", "productsDateInput");
-  setupDatePicker("reportDateDisplay", "reportDateText", "reportDateInput");
+  /** -------------------------
+   * Generic Form Success Message
+   * ------------------------- */
+  document.querySelectorAll("form").forEach(form => {
+    const successMsg = form.querySelector(".success-message");
 
-  // ========== GENERIC FORM HANDLER ==========
-  function setupForm(formId, successId) {
-    const form = document.getElementById(formId);
-    const successMsg = document.getElementById(successId);
-
-    if (form && successMsg) {
+    if (successMsg) {
       form.addEventListener("submit", (e) => {
         e.preventDefault();
+
         successMsg.classList.remove("d-none");
+
+        setTimeout(() => {
+          successMsg.classList.add("d-none");
+        }, 3000);
+
         form.reset();
       });
     }
-  }
+  });
 
-  setupForm("purchaseForm", "successMessage");
-  setupForm("issueForm", "issueSuccess");
-  setupForm("returnForm", "returnSuccess");
-  setupForm("productsForm", "productsSuccess");
+  /** -------------------------
+   * Toast (for Issue Form only)
+   * ------------------------- */
+  const issueForm = document.getElementById("issueForm");
+  const issueToastEl = document.getElementById("issueToast");
 
-  // ========== INVENTORY PAGE ==========
-  const inventoryTable = document.getElementById("inventoryTable");
-  if (inventoryTable) {
-    console.log("Inventory Page Loaded");
-    inventoryTable.querySelectorAll("tr").forEach(row => {
-      const qtyCell = row.querySelector(".qty");
-      if (qtyCell && parseInt(qtyCell.textContent) < 5) {
-        row.classList.add("low-stock");
-      }
+  if (issueForm && issueToastEl) {
+    issueForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const toast = new bootstrap.Toast(issueToastEl);
+      toast.show();
+
+      issueForm.reset();
     });
   }
 
-  // ========== REPORTS PAGE ==========
-  const generateReportBtn = document.getElementById("generateReportBtn");
-  if (generateReportBtn) {
-    generateReportBtn.addEventListener("click", () => {
-      alert("Report Generated!");
+  /** -------------------------
+   * Bootstrap Form Validation
+   * ------------------------- */
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    forms.forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
     });
-  }
-
-  // ========== PRINT FUNCTION ==========
-  const printBtn = document.getElementById("printBtn");
-  if (printBtn) {
-    printBtn.addEventListener("click", () => {
-      window.print();
-    });
-  }
-
+  })();
 });
