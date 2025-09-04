@@ -17,35 +17,35 @@
   <div id="header-placeholder"></div>
 
   <!-- Page Header -->
-  <div class="header-bar d-flex justify-content-between align-items-center">
-    <!-- Left side: Back button + Title + Date -->
-    <div class="d-flex align-items-center">
-      <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
-        <i class="bi bi-arrow-left"></i> Back
-      </button>
-      <!-- ✅ Title auto-filled from script.js -->
-      <h5 class="page-title mb-0 me-3" id="pageTitle">Add Product Details</h5>
-      
-      <!-- ✅ Date badge (click to pick date) -->
-      <span id="dateBadge" class="date-display">📅 Choose Date</span>
-      <input type="date" id="datePicker" hidden>
-    </div>
 
-    <!-- Right side: Print -->
-    <div>
-      <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
-        <i class="bi bi-printer"></i> Print
-      </button>
-    </div>
+     <div class="header-bar d-flex justify-content-between align-items-center">
+  <!-- Left: Back Button -->
+  <div>
+    <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
   </div>
+
+  <!-- Center: Title -->
+  <div class="flex-grow-1 text-center">
+    <h5 class="page-title mb-0">
+      <i class="bi bi-upc-scan me-1"></i>Add Product Information
+    </h5>
+  </div>
+
+  <!-- Right: Date Picker -->
+  <div class="d-flex align-items-center gap-2">
+    <input type="date" id="pageDate" class="form-control form-control-sm" style="max-width: 180px;">
+  </div>
+</div>
 
   <!-- Main Content -->
     <main class="container my-2">
     <div class="card shadow border-0 rounded-3">
-      <div class="card-header bg-navy text-white">
+      <div class="card-header bg-navy text-navy">
         <h5 class="mb-0"><i class="bi bi-box-seam me-2"></i>Add Product</h5>
       </div>
-      <div class="card-body p-4">
+      <div class="form-card">
         <form action="save_product.php" method="POST">
 
           <div class="row">
@@ -62,10 +62,15 @@
               <label class="form-label"><i class="bi bi-rulers me-1"></i>Unit</label>
               <select class="form-select" name="unit" required>
                 <option value="">-- Select Unit --</option>
-                <option value="pcs">Pieces</option>
+                <option value="pcs">Numbers</option>
                 <option value="mtr">Meter</option>
-                <option value="kg">Kilogram</option>
+                <option value="kg">Kg</option>
                 <option value="ltr">Litre</option>
+                <option value="ls">Lump Sum(ls)</option>
+                <option value="Rmt">RMT</option>
+                <option value="Cmt">CMT</option>
+                <option value="Feet">Feet</option>
+                <option value="Inches">Inches</option>
               </select>
             </div>
 
@@ -80,13 +85,12 @@
             </div>
           </div>
 
-          <!-- Buttons -->
-         <div class="d-flex justify-content-center">
-               <button type="submit" class="btn btn-success">
-                 <i class="bi bi-save me-1"></i>Save Product
-            </button>
-          </div>
-
+           <!-- Submit Button -->
+          <div class="text-center">
+  <button type="submit" class="btn btn-save mt-3">
+    <i class="fas fa-save me-2"></i> Save Product
+  </button>
+</div>
         </form>
       </div>
     </div>

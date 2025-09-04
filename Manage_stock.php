@@ -17,7 +17,10 @@ $result = $conn->query($sql);
 
   <div class="container">
     <h2 class="mb-4">Manage Stock</h2>
-
+       <!-- 🔍 Search Bar -->
+  <div class="mb-3">
+    <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search...">
+  </div>
     <!-- ✅ Success / Error Alerts -->
     <?php if (isset($_GET['msg'])): ?>
       <div class="alert alert-success alert-dismissible fade show" role="alert">

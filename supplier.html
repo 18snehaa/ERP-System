@@ -18,112 +18,121 @@
 
   <!-- Page Header -->
     <div class="header-bar d-flex justify-content-between align-items-center">
-    <!-- Left side: Back button + Title + Date -->
-    <div class="d-flex align-items-center">
-      <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
-        <i class="bi bi-arrow-left"></i> Back
-      </button>
-      <h5 class="page-title mb-0 me-3">Add Supplier Information</h5>
-      </div>
-
-    <!-- Right side: Print -->
-    <div>
-      <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
-        <i class="bi bi-printer"></i> Print
-      </button>
-    </div>
+  <!-- Left: Back Button -->
+  <div>
+    <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
   </div>
+
+  <!-- Center: Title -->
+  <div class="flex-grow-1 text-center">
+    <h5 class="page-title mb-0">
+      <i class="bi bi-truck me-2"></i>Add Supplier Information
+    </h5>
+  </div>
+
+  <!-- Right: Date Picker -->
+  <div class="d-flex align-items-center gap-2">
+    <input type="date" id="pageDate" class="form-control form-control-sm" style="max-width: 180px;">
+  </div>
+</div>
+
 
   <!-- Supplier Form -->
-  <  <main class="container my-2">
+  <main class="container my-1">
     <div class="card shadow border-0 rounded-3">
-      <div class="card-header bg-navy text-white">
-            <h4 class="mb-0"><i class="bi bi-truck me-2"></i>Add Supplier</h4>
+      <div class="card-header bg-navy text-navy">
+        <h4 class="mb-0"><i class="bi bi-truck me-2"></i>Add Supplier</h4>
+      </div>
+      <div class="form-card">
+        <form action="save_supplier.php" method="POST">
+          <!-- Name & Email -->
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label"><i class="bi bi-person-fill me-1"></i>Name</label>
+              <input type="text" class="form-control" name="name" placeholder="Enter supplier name" required>
+            </div>
+            <div class="col">
+              <label class="form-label"><i class="bi bi-envelope-fill me-1"></i>Email</label>
+              <input type="email" class="form-control" name="email" placeholder="example@email.com" required>
+            </div>
           </div>
-          <div class="card-body p-4">
-            <form action="save_supplier.php" method="POST">
-              <!-- Name & Email -->
-              <div class="row mb-3">
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-person-fill me-1"></i>Name</label>
-                  <input type="text" class="form-control" name="name" placeholder="Enter supplier name" required>
-                </div>
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-envelope-fill me-1"></i>Email</label>
-                  <input type="email" class="form-control" name="email" placeholder="example@email.com" required>
-                </div>
-              </div>
 
-              <!-- Phone & Alternate -->
-              <div class="row mb-3">
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-telephone-fill me-1"></i>Phone</label>
-                  <input type="text" class="form-control" name="phone" placeholder="Primary number" required>
-                </div>
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-telephone me-1"></i>Alternate Mobile</label>
-                  <input type="text" class="form-control" name="alt_phone" placeholder="Optional">
-                </div>
-              </div>
-
-              <!-- PAN & Aadhar -->
-              <div class="row mb-3">
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-card-text me-1"></i>PAN No</label>
-                  <input type="text" class="form-control" name="pan_no" placeholder="ABCDE1234F">
-                </div>
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-credit-card-2-front me-1"></i>Aadhar No</label>
-                  <input type="text" class="form-control" name="aadhar_no" placeholder="1234-5678-9012">
-                </div>
-              </div>
-
-              <!-- Bank Name & Branch -->
-              <div class="row mb-3">
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-bank me-1"></i>Bank Name</label>
-                  <input type="text" class="form-control" name="bank_name" placeholder="HDFC, SBI, ICICI...">
-                </div>
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-diagram-3-fill me-1"></i>Bank Branch</label>
-                  <input type="text" class="form-control" name="bank_branch" placeholder="Branch Name">
-                </div>
-              </div>
-
-              <!-- GST & IFSC -->
-              <div class="row mb-3">
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-file-earmark-text me-1"></i>GST No</label>
-                  <input type="text" class="form-control" name="gst_no" placeholder="22AAAAA0000A1Z5">
-                </div>
-                <div class="col">
-                  <label class="form-label"><i class="bi bi-123 me-1"></i>IFSC Code</label>
-                  <input type="text" class="form-control" name="ifsc_code" placeholder="SBIN0001234">
-                </div>
-              </div>
-
-              <!-- Address -->
-              <div class="mb-3">
-                <label class="form-label"><i class="bi bi-geo-alt-fill me-1"></i>Address</label>
-                <textarea class="form-control" name="address" rows="3" placeholder="Enter supplier address"></textarea>
-              </div>
-
-              <!-- Submit -->
-           <div class="d-flex justify-content-center">
-               <button type="submit" class="btn btn-success">
-                 <i class="bi bi-save me-1"></i>Save Product
-            </button>
+          <!-- Phone & Alternate -->
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label"><i class="bi bi-telephone-fill me-1"></i>Phone</label>
+              <input type="text" class="form-control" name="phone" placeholder="Primary number" required>
+            </div>
+            <div class="col">
+              <label class="form-label"><i class="bi bi-telephone me-1"></i>Alternate Mobile</label>
+              <input type="text" class="form-control" name="alt_phone" placeholder="Optional">
+            </div>
           </div>
-              </div>
-            </form>
+
+          <!-- PAN & Aadhar -->
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label"><i class="bi bi-card-text me-1"></i>PAN No</label>
+              <input type="text" class="form-control" name="pan_no" placeholder="ABCDE1234F">
+            </div>
+            <div class="col">
+              <label class="form-label"><i class="bi bi-credit-card-2-front me-1"></i>Aadhar No</label>
+              <input type="text" class="form-control" name="aadhar_no" placeholder="1234-5678-9012">
+            </div>
           </div>
-        </div>
+
+          <!-- Bank Name & Branch -->
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label"><i class="bi bi-bank me-1"></i>Bank Name</label>
+              <input type="text" class="form-control" name="bank_name" placeholder="HDFC, SBI, ICICI...">
+            </div>
+            <div class="col">
+              <label class="form-label"><i class="bi bi-diagram-3-fill me-1"></i>Bank Branch</label>
+              <input type="text" class="form-control" name="bank_branch" placeholder="Branch Name">
+            </div>
+          </div>
+
+           <!-- Bank Account No & IFSC Code -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-account me-1"></i>Bank Account No</label>
+              <input type="text" class="form-control" name="bank_account_no" placeholder="Enter account number">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-key-fill me-1"></i>IFSC Code</label>
+              <input type="text" class="form-control" name="ifsc_code" placeholder="Enter IFSC code">
+            </div>
+          </div>
+
+          <!-- GST No & Address -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-file-earmark-text-fill me-1"></i>GST No</label>
+              <input type="text" class="form-control" name="gst_no" placeholder="Enter GST number">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-geo-alt-fill me-1"></i>Address</label>
+              <textarea class="form-control" name="address" rows="1" placeholder="Enter contractor's address"></textarea>
+            </div>
+          </div>
+
+        
+          <!-- Submit Button -->
+          <div class="text-center">
+  <button type="submit" class="btn btn-save mt-3">
+    <i class="fas fa-save me-2"></i> Save Supplier
+  </button>
+</div>
+        </form>
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- Bootstrap + Common JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script> <!-- ✅ This loads the header -->
-</body>
+  <script src="script.js"></script>
+</body>         
 </html>

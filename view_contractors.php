@@ -8,12 +8,42 @@ $result = $conn->query($sql);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Contractors</title>
+  <title>Add Contractor - Raiban Electrical Solutions</title>
+
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Common Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body class="p-4">
-  <h2 class="mb-4">Contractors List</h2>
-  <table class="table table-bordered table-striped">
+<body>
+  <!-- Navbar -->
+  <div id="header-placeholder"></div>
+  
+  <!-- Header Bar -->
+  <div class="header-bar d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+    </div>
+    <h2 class="mb-0">Contractors List</h2>
+      <div>
+        <button onclick="window.print()" class="btn btn-secondary">
+          <i class="fas fa-print me-2"></i> Print
+        </button>
+      </div>
+  </div>
+  <div class="my-5">
+
+  <!-- Search Bar -->
+  <div class="mb-3">
+    <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search...">
+  </div>
+
+  <!-- Contractors Table -->
+  <table class="table table-bordered table-striped" id="contractorsTable">
     <thead class="table-dark">
       <tr>
         <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
@@ -43,5 +73,13 @@ $result = $conn->query($sql);
       <?php } ?>
     </tbody>
   </table>
+
+  <!-- Bootstrap & JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+  
+  
+
 </body>
 </html>

@@ -17,7 +17,7 @@ $sql = "INSERT INTO products
 if ($conn->query($sql) === TRUE) {
     echo "<script>
             alert('Product saved successfully!');
-            window.location.href = 'products.html';
+            window.location.href = 'product.html';
           </script>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

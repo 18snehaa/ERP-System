@@ -3,152 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Stocks - Raiban Electrical Solutions</title>
+  <title>Add Product - Raiban Electrical Solutions</title>
+
+<!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Common Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  
-  <!-- Navbar -->
+
+  <!-- Header (Navbar) -->
   <div id="header-placeholder"></div>
 
-  <!-- Main Content -->
-  <main class="container my-4">
-    <h2 class="page-title mb-4"><i class="fas fa-boxes me-2"></i> Manage Stocks</h2>
+  <!-- Page Content -->
+  <div class="container my-5">
 
-    <!-- Success Message -->
-    <div id="successMessage" class="alert alert-success d-none" role="alert">
-      ✅ Product saved successfully!
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2><i class="bi bi-box-seam"></i> Add New Product</h2>
+      <a href="Manage_stock.php" class="btn btn-dark">
+        <i class="bi bi-arrow-left"></i> Back
+      </a>
     </div>
 
-    <!-- Card (Form) -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        <i class="fas fa-plus-circle"></i> Add New Product
-      </div>
-      <div class="card-body">
-        <form id="manageStockForm">
-          <div class="row g-3">
+    <!-- Product Form -->
+    <div class="card shadow border-0 rounded-3">
+      <div class="card-body p-4">
+        <form action="save_product.php" method="POST">
+          
+          <!-- Product Code + Name -->
+          <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">Product Name</label>
-              <input type="text" class="form-control" name="productName" required>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">Category</label>
-              <select class="form-select" name="category" required>
-                <option value="" selected disabled>-- Select Category --</option>
-                <option>Electrical</option>
-                <option>Plumbing</option>
-                <option>Tools</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Quantity</label>
-              <input type="number" class="form-control" name="quantity" min="0" required>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Unit (UOM)</label>
-              <select class="form-select" name="uom" required>
-                <option>Pcs</option>
-                <option>Box</option>
-                <option>Meter</option>
-                <option>Kg</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Reorder Level</label>
-              <input type="number" class="form-control" name="reorder" min="0">
+              <label class="form-label"><i class="bi bi-upc-scan me-1"></i> Product Code</label>
+              <input type="text" class="form-control" name="product_code" placeholder="Enter Product Code" required>
             </div>
             <div class="col-md-6">
-              <label class="form-label">Purchase Price (₹)</label>
-              <input type="number" step="0.01" class="form-control" name="purchasePrice" required>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">Selling Price (₹)</label>
-              <input type="number" step="0.01" class="form-control" name="sellingPrice" required>
+              <label class="form-label"><i class="bi bi-tag-fill me-1"></i> Product Name</label>
+              <input type="text" class="form-control" name="product_name" placeholder="Enter Product Name" required>
             </div>
           </div>
-          <div class="mt-3 d-flex justify-content-end">
+
+          <!-- Unit + Quantity -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-rulers me-1"></i> Unit</label>
+              <select class="form-select" name="unit" required>
+                <option value="">-- Select Unit --</option>
+                <option value="pcs">Pieces</option>
+                <option value="kg">Kg</option>
+                <option value="liter">Liter</option>
+                <option value="meter">Meter</option>
+                <option value="km">Km</option>
+                <option value="box">Box</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-123 me-1"></i> Quantity</label>
+              <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" required>
+            </div>
+          </div>
+
+          <!-- Price -->
+          <div class="mb-3">
+            <label class="form-label"><i class="bi bi-cash-coin me-1"></i> Price</label>
+            <input type="number" step="0.01" class="form-control" name="price" placeholder="Enter Price per Unit" required>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-success">
-              <i class="fas fa-save"></i> Save Product
+              <i class="bi bi-save me-1"></i> Save Product
             </button>
           </div>
+
         </form>
       </div>
     </div>
-
-    <!-- Table (Stock List) -->
-    <div class="card">
-      <div class="card-header bg-dark text-white">
-        <i class="fas fa-list"></i> Stock List
-      </div>
-      <div class="card-body table-responsive">
-        <table class="table table-bordered table-striped align-middle">
-          <thead class="table-dark">
-            <tr>
-              <th>#</th>
-              <th>Product Name</th>
-              <th>Category</th>
-              <th>Quantity</th>
-              <th>UOM</th>
-              <th>Purchase Price</th>
-              <th>Selling Price</th>
-              <th>Reorder Level</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="stockTableBody">
-            <!-- Rows will be added dynamically -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </main>
+  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Common JS -->
-  <script src="common.js"></script>
-
-  <!-- Page Specific JS -->
-  <script>
-    const form = document.getElementById("manageStockForm");
-    const tableBody = document.getElementById("stockTableBody");
-
-    let counter = 1;
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const data = new FormData(form);
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-        <td>${counter++}</td>
-        <td>${data.get("productName")}</td>
-        <td>${data.get("category")}</td>
-        <td>${data.get("quantity")}</td>
-        <td>${data.get("uom")}</td>
-        <td>₹${data.get("purchasePrice")}</td>
-        <td>₹${data.get("sellingPrice")}</td>
-        <td>${data.get("reorder")}</td>
-        <td>
-          <button class="btn btn-sm btn-warning me-1"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-        </td>
-      `;
-
-      tableBody.appendChild(row);
-
-      form.reset();
-    });
-  </script>
-
 </body>
 </html>

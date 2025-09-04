@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Return Stock - Raiban Electrical Solutions</title>
 
-  <!-- Bootstrap -->
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+ 
 
-  <!-- Global Style -->
+  <!-- Global CSS -->
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -18,81 +20,118 @@
 
   <!-- Page Container -->
   <div class="container mt-5">
-    <!-- Header Row -->
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
-      <div class="d-flex align-items-center gap-3 flex-wrap">
-        <a href="index.html" class="btn btn-dark">
-          <i class="fas fa-arrow-left me-2"></i> Back
-        </a>
-        <h2 class="page-title m-0 d-flex align-items-center gap-3">
-          <i class="fas fa-undo"></i> Return Stock
-          <!-- Date next to title -->
-          <span id="returnDateText" class="badge bg-light text-dark fs-6"></span>
-          <input type="date" id="returnDate" class="d-none">
-        </h2>
-      </div>
-      <div>
-        <button onclick="window.print()" class="btn btn-secondary">
-          <i class="fas fa-print me-2"></i> Print
-        </button>
-      </div>
-    </div>
+      <!-- Header Row -->
+<div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+  
+  <!-- Back Button -->
+  <div>
+    <a href="dashboard.html" class="btn btn-dark">
+      <i class="fas fa-arrow-left me-2"></i> Back
+    </a>
+  </div>
 
-    <!-- Return Form -->
-    <div class="card p-4 mt-3">
-      <form id="returnForm">
+  <!-- Page Title -->
+  <div class="flex-grow-1 text-center">
+    <h2 class="page-title m-0">
+      <i class="fas fa-undo"></i> Return Stock
+    </h2>
+  </div>
+
+  
+    
+     <div class="d-flex align-items-center gap-2">
+  <!-- Date Picker -->
+  <input type="date" id="pageDate" class="form-control form-control-sm" style="max-width: 180px;">
+
+  <!-- Print Button -->
+  <div>
+    <button onclick="window.print()" class="btn btn-secondary">
+      <i class="fas fa-print me-2"></i> Print
+    </button>
+  </div>
+</div>
+
+
+    <!-- Return Form Card -->
+    <div class="form-card p-4 shadow rounded-3">
+      <form id="returnForm" action="return_stock.php" method="POST">
         <div class="row g-3">
+
+          <!-- Entry Date -->
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-calendar-alt me-2"></i> Entry Date</label>
+            <input type="text" name="entry_date" class="form-control datepicker" placeholder="Select Date" required>
+          </div>
+
+          <!-- Contractor Name -->
           <div class="col-md-6">
             <label class="form-label"><i class="fas fa-user"></i> Contractor Name</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" name="contractor_name" placeholder="Enter Contractor Name" required>
           </div>
+
+          <!-- Material Code -->
           <div class="col-md-6">
             <label class="form-label"><i class="fas fa-barcode"></i> Material Code</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" name="material_code" placeholder="Enter Material Code" required>
           </div>
+
+          <!-- Material Name -->
           <div class="col-md-6">
             <label class="form-label"><i class="fas fa-box"></i> Material Name</label>
-            <input type="text" class="form-control" required>
+            <input type="text" class="form-control" name="material_name" placeholder="Enter Material Name" required>
           </div>
+
+          <!-- Quantity -->
           <div class="col-md-6">
             <label class="form-label"><i class="fas fa-sort-numeric-up"></i> Quantity</label>
-            <input type="number" class="form-control" required>
+            <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" required>
           </div>
+
+          <!-- Unit -->
           <div class="col-md-6">
             <label class="form-label"><i class="fas fa-ruler"></i> Unit</label>
-            <select class="form-select" required>
+            <select class="form-select" name="unit" required>
               <option value="">-- Select Unit --</option>
-              <option value="pcs">Pieces</option>
+              <option value="pcs">Numbers</option>
               <option value="mtr">Meter</option>
               <option value="kg">Kilogram</option>
               <option value="ltr">Litre</option>
+              <option value="ls">Lump Sum(ls)</option>
+              <option value="Rmt">RMT</option>  
+              <option value="Cmt">CMT</option>
+              <option value="Feet">Feet</option>  
+              <option value="Inches">Inches</option>  
+              
             </select>
           </div>
+
+          <!-- Reason for Return -->
           <div class="col-md-6">
-            <label class="form-label"><i class="fas fa-comment-dots"></i> Reason</label>
-            <input type="text" class="form-control" required>
+            <label class="form-label"><i class="fas fa-reply"></i> Reason for Return</label>
+            <input type="text" class="form-control" name="reason" placeholder="Enter Reason for Return" required>
           </div>
+
         </div>
 
         <!-- Submit Button -->
-              <div class="col-12 text-center">
-        <button type="submit" class="btn btn-primary mt-3">
-          <i class="fas fa-undo"></i> Record Return
-        </button>
+        <div class="col-12 text-center mt-3">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save me-2"></i> Save Return
+          </button>
         </div>
-      </form>
 
-      <!-- Success Message -->
-      <div id="successMessage" class="alert alert-success mt-3 d-none">
-        ✅ Return entry recorded successfully!
-      </div>
+        <!-- Success Message -->
+        <div id="successMessage" class="alert alert-success d-none mt-3" role="alert">
+          ✅ Return successfully recorded!  
+        </div>
+
+      </form>
     </div>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Global Script -->
   <script src="script.js"></script>
+
 </body>
 </html>

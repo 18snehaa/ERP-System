@@ -4,50 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unit Converter - Raiban Electrical Solutions</title>
+
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    .converter-card {
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      background: #fff;
-    }
-    .converter-card h3 {
-      font-weight: 600;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #0d1b2a;
-    }
-  </style>
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header/Navbar -->
-  <header class="navbar">
-    <div class="logo-container">
-      <img src="RLogo.png" alt="Logo" class="logo">
-      <span class="company-name">Raiban Electrical Solutions</span>
-    </div>
+  <!-- Header (dynamic) -->
+  <div id="header-placeholder"></div>
 
-    <nav class="nav-links">
-      <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
-      <a href="purchase.html" class="nav-item"><i class="fas fa-shopping-cart"></i><span>Purchase</span></a>
-      <a href="issue.html" class="nav-item"><i class="fas fa-box-open"></i><span>Issue</span></a>
-      <a href="return.html" class="nav-item"><i class="fas fa-undo"></i><span>Return</span></a>
-      <a href="Forms.html" class="nav-item"><i class="fas fa-user"></i><span>Forms</span></a>
-      <a href="generatereport.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Report</span></a>
-      <a href="unitconverter.html" class="nav-item active"><i class="fas fa-calculator"></i><span>Unit Converter</span></a>
-    </nav>
-  </header>
+       <!-- Header Row -->
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <a href="dashboard.html" class="btn btn-dark">
+          <i class="fas fa-arrow-left me-2"></i> Back
+        </a>
+      </div>
+      </div>
 
-  <!-- Converter Section -->
-  <main>
-    <div class="converter-card">
-      <h3><i class="fas fa-calculator"></i> Unit Converter</h3>
+  <!-- Converter Section (centered) -->
+  <main class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="converter-card p-4 shadow rounded bg-white" style="max-width:500px; width:100%;">
+      <h3 class="text-center mb-4"><i class="fas fa-calculator"></i> Unit Converter</h3>
+
       <form id="converterForm">
         <div class="mb-3">
           <label for="value" class="form-label">Enter Value</label>
@@ -60,50 +43,48 @@
             <option value="kilometer">Kilometers</option>
             <option value="feet">Feet</option>
             <option value="inch">Inches</option>
+            <option value="kg">Kilograms</option>
+            <option value="gram">Grams</option>
+            <option value="pound">Pounds</option>
+            <option vlaue="CMT">CMT</option>
+            <option value="RMT">RMT</option>
+            <option value="Litre">Litres</option>
+            <option value="ml">Millilitres</option>
+            <option value="ls">Lump Sum(ls)</option>
+            <option value="pcs">Numbers</option>
+
           </select>
         </div>
         <div class="mb-3">
           <label for="toUnit" class="form-label">To</label>
           <select id="toUnit" class="form-select">
-            <option value="meter">Meters</option>
+           <option value="meter">Meters</option>
             <option value="kilometer">Kilometers</option>
             <option value="feet">Feet</option>
             <option value="inch">Inches</option>
+            <option value="kg">Kilograms</option>
+            <option value="gram">Grams</option>
+            <option value="pound">Pounds</option>
+            <option vlaue="CMT">CMT</option>
+            <option value="RMT">RMT</option>
+            <option value="Litre">Litres</option>
+            <option value="ml">Millilitres</option>
+            <option value="ls">Lump Sum(ls)</option>
+            <option value="pcs">Numbers</option>
+            
           </select>
         </div>
         <button type="submit" class="btn btn-primary w-100">Convert</button>
       </form>
+
       <div class="mt-3 text-center">
-        <h5 id="result" class="text-success"></h5>
+        <h5 id="result" class="text-success fw-bold"></h5>
       </div>
     </div>
   </main>
 
-  <script>
-    document.getElementById("converterForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      let value = parseFloat(document.getElementById("value").value);
-      let from = document.getElementById("fromUnit").value;
-      let to = document.getElementById("toUnit").value;
-      let result = 0;
-
-      // Conversion factors in meters
-      const units = {
-        "meter": 1,
-        "kilometer": 1000,
-        "feet": 0.3048,
-        "inch": 0.0254
-      };
-
-      if (from in units && to in units) {
-        result = (value * units[from]) / units[to];
-      }
-
-      document.getElementById("result").innerText = 
-        value + " " + from + " = " + result.toFixed(4) + " " + to;
-    });
-  </script>
-
+  <!-- Bootstrap JS + Common JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

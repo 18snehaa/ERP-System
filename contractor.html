@@ -12,113 +12,129 @@
   <!-- Common Stylesheet -->
   <link rel="stylesheet" href="style.css"/>
 </head>
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/css/intlTelInput.css">
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17/build/js/intlTelInput.min.js"></script>
+
 <body>
- 
-    <!-- Navbar -->
-<div id="header-placeholder"></div>
+  <!-- Navbar -->
+  <div id="header-placeholder"></div>
   
   <!-- Header Bar -->
-    <div class="header-bar d-flex justify-content-between align-items-center">
-    <!-- Left side: Back button + Title + Date -->
-    <div class="d-flex align-items-center">
-      <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
-        <i class="bi bi-arrow-left"></i> Back
-      </button>
-      <h5 class="page-title mb-0 me-3">Add Contractor Information</h5>
-      </div>
-
-    <!-- Right side: Print -->
-    <div>
-      <button class="btn btn-outline-primary btn-sm" onclick="window.print()">
-        <i class="bi bi-printer"></i> Print
-      </button>
-    </div>
+  <div class="header-bar d-flex justify-content-between align-items-center">
+  <!-- Left: Back Button -->
+  <div>
+    <button class="btn btn-secondary btn-sm me-3" onclick="history.back()">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
   </div>
 
+  <!-- Center: Title -->
+  <div class="flex-grow-1 text-center">
+    <h5 class="page-title mb-0">
+      <i class="bi bi-person-badge me-2"></i>Add Contractor Information
+    </h5>
+  </div>
+
+  <!-- Right: Date Picker -->
+  <div class="d-flex align-items-center gap-2">
+    <input type="date" id="pageDate" class="form-control form-control-sm" style="max-width: 180px;">
+  </div>
+</div>
+
   <!-- Contractor Form -->
-    <main class="container my-2">
+  <main class="container my-2">
     <div class="card shadow border-0 rounded-3">
-      <div class="card-header bg-navy text-white">
-        <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Add Contractor Information</h5>
+      <div class="card-header bg-navy text-navy">
+        <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Add Contractor</h5>
       </div>
-      <div class="card-body p-4">
-    <div class="card card-custom shadow-sm p-4">
-      <form action="save_contractor.php" method="POST">
+      <div class="form-card p-3">
+        <form action="save_contractor.php" method="POST">
+          
+          <!-- Name & Email -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-person-fill me-1"></i>Full Name</label>
+              <input type="text" class="form-control" name="name" placeholder="Enter full name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-envelope-fill me-1"></i>Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Enter email address" required>
+            </div>
+          </div>
 
-        <!-- Name & Email -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-person-fill me-1"></i> Full Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter full name" required>
+          <!-- Phone & Alternate Phone -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-telephone-fill me-1"></i>Phone</label>
+              <input type="text" class="form-control" name="phone" placeholder="Primary phone number" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-telephone me-1"></i>Alternate Phone</label>
+              <input type="text" class="form-control" name="alt_phone" placeholder="Alternate contact number">
+            </div>
           </div>
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-envelope-fill me-1"></i> Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email address" required>
-          </div>
-        </div>
 
-        <!-- Phone & Alternate Phone -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-telephone-fill me-1"></i> Phone</label>
-            <input type="text" class="form-control" name="phone" placeholder="Primary phone number" required>
+          <!-- PAN & Aadhar -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-card-text me-1"></i>PAN No</label>
+              <input type="text" class="form-control" name="pan_no" placeholder="Enter PAN number">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-credit-card-2-front-fill me-1"></i>Aadhar No</label>
+              <input type="text" class="form-control" name="aadhar_no" placeholder="Enter Aadhar number">
+            </div>
           </div>
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-telephone me-1"></i> Alternate Phone</label>
-            <input type="text" class="form-control" name="alt_phone" placeholder="Alternate contact number">
-          </div>
-        </div>
 
-        <!-- PAN & Aadhar -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-card-text me-1"></i> PAN No</label>
-            <input type="text" class="form-control" name="pan_no" placeholder="Enter PAN number">
+          <!-- Bank Name & Branch -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-bank me-1"></i>Bank Name</label>
+              <input type="text" class="form-control" name="bank_name" placeholder="Enter bank name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-building me-1"></i>Bank Branch</label>
+              <input type="text" class="form-control" name="bank_branch" placeholder="Enter bank branch">
+            </div>
           </div>
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-credit-card-2-front-fill me-1"></i> Aadhar No</label>
-            <input type="text" class="form-control" name="aadhar_no" placeholder="Enter Aadhar number">
-          </div>
-        </div>
 
-        <!-- Bank Name & Branch -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-bank me-1"></i> Bank Name</label>
-            <input type="text" class="form-control" name="bank_name" placeholder="Enter bank name">
+          <!-- Bank Account No & IFSC Code -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-credit-card me-1"></i>Bank Account No</label>
+              <input type="text" class="form-control" name="bank_account_no" placeholder="Enter account number">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-key-fill me-1"></i>IFSC Code</label>
+              <input type="text" class="form-control" name="ifsc_code" placeholder="Enter IFSC code">
+            </div>
           </div>
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-building me-1"></i> Bank Branch</label>
-            <input type="text" class="form-control" name="bank_branch" placeholder="Enter bank branch">
-          </div>
-        </div>
 
-        <!-- GST & IFSC -->
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-file-earmark-text-fill me-1"></i> GST No</label>
-            <input type="text" class="form-control" name="gst_no" placeholder="Enter GST number">
+          <!-- GST No & Address -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-file-earmark-text-fill me-1"></i>GST No</label>
+              <input type="text" class="form-control" name="gst_no" placeholder="Enter GST number">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><i class="bi bi-geo-alt-fill me-1"></i>Address</label>
+              <textarea class="form-control" name="address" rows="1" placeholder="Enter contractor's address"></textarea>
+            </div>
           </div>
-          <div class="col-md-6">
-            <label class="form-label"><i class="bi bi-key-fill me-1"></i> IFSC Code</label>
-            <input type="text" class="form-control" name="ifsc_code" placeholder="Enter IFSC code">
-          </div>
-        </div>
 
-        <!-- Address -->
-        <div class="mb-3">
-          <label class="form-label"><i class="bi bi-geo-alt-fill me-1"></i> Address</label>
-          <textarea class="form-control" name="address" rows="3" placeholder="Enter contractor's address"></textarea>
-        </div>
-
-        <!-- Submit Button -->
-       <div class="d-flex justify-content-center">
-               <button type="submit" class="btn btn-success">
-                 <i class="bi bi-save me-1"></i>Save Product
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-save mt-3">
+              <i class="fas fa-save me-2"></i> Save Contractor
             </button>
           </div>
-        </div>
-      </form>
+
+        </form>
+      </div>
     </div>
   </main>
 

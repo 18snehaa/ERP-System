@@ -1,7 +1,8 @@
 <?php
 include 'conn.php';
 
-$sql = "SELECT * FROM suppliers ORDER BY supplier_id DESC";
+// Fetch all products ordered by latest
+$sql = "SELECT * FROM products ORDER BY product_id DESC";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ $result = $conn->query($sql);
         <i class="bi bi-arrow-left"></i> Back
       </button>
     </div>
-    <h2 class="mb-0">Suppliers List</h2>
+    <h2 class="mb-0">Products List</h2>
       <div>
         <button onclick="window.print()" class="btn btn-secondary">
           <i class="fas fa-print me-2"></i> Print
@@ -41,7 +42,8 @@ $result = $conn->query($sql);
   <!-- Search Bar -->
   <div class="mb-3">
     <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search...">
-</div>
+  </div>
+
 
     <!-- ✅ Success Message (if redirected with msg) -->
     <?php if (isset($_GET['msg'])): ?>
@@ -50,49 +52,44 @@ $result = $conn->query($sql);
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif; ?>
-  
-  <table class="table table-bordered table-striped">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Alt Phone</th>
-        <th>PAN No</th>
-        <th>Aadhar No</th>
-        <th>Bank</th>
-        <th>Branch</th>
-        <th>GST No</th>
-        <th>IFSC</th>
-        <th>Address</th>
-        <th>Created</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) { ?>
-          <tr>
-            <td><?= $row['supplier_id'] ?></td>
-            <td><?= $row['name'] ?></td>
-            <td><?= $row['email'] ?></td>
-            <td><?= $row['phone'] ?></td>
-            <td><?= $row['alt_phone'] ?></td>
-            <td><?= $row['pan_no'] ?></td>
-            <td><?= $row['aadhar_no'] ?></td>
-            <td><?= $row['bank_name'] ?></td>
-            <td><?= $row['bank_branch'] ?></td>
-            <td><?= $row['gst_no'] ?></td>
-            <td><?= $row['ifsc_code'] ?></td>
-            <td><?= $row['address'] ?></td>
-            <td><?= $row['created_at'] ?></td>
-          </tr>
-      <?php } } else { ?>
-          <tr><td colspan="13" class="text-center">No Suppliers Found</td></tr>
-      <?php } ?>
-    </tbody>
-  </table>
-  <!-- Bootstrap & JS -->
+
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Product Code</th>
+          <th>Product Name</th>
+          <th>Unit</th>
+          <th>Quantity</th>
+          <th>Price (₹)</th>
+          <th>Total Value (₹)</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if ($result->num_rows > 0): ?>
+          <?php while($row = $result->fetch_assoc()): ?>
+            <tr>
+              <td><?= $row['product_id'] ?></td>
+              <td><?= $row['product_code'] ?></td>
+              <td><?= $row['product_name'] ?></td>
+              <td><?= $row['unit'] ?></td>
+              <td><?= $row['quantity'] ?></td>
+              <td><?= number_format($row['price'], 2) ?></td>
+              <td><?= number_format($row['quantity'] * $row['price'], 2) ?></td>
+              <td><?= $row['created_at'] ?? '-' ?></td>
+            </tr>
+          <?php endwhile; ?>
+        <?php else: ?>
+          <tr><td colspan="8" class="text-center">No Products Found</td></tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+    <div class="col-12 text-center">
+    <a href="product.html" class="btn btn-success">+ Add New Product</a>
+  </div>
+
+<!-- Bootstrap & JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
