@@ -245,20 +245,157 @@ body {
 }
 
 /* ------------------------------
-   Login/Register Page
+   Login Page
 ------------------------------ */
+/* Whole page background */
 body.login-page {
-  background: linear-gradient(135deg, #1843a1, #d7d7e0);
-  min-height: 100vh;
-  min-width: 100vw;
+  font-family: 'Inter', sans-serif;
+  background:  linear-gradient(135deg, #1976d2, #c8b3df);
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Login card */
+.login-card {
+  display: flex;
+  width: 900px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
-/* ... (Login/Register styles stay same, no change needed) ... */
+/* Left side */
+.login-card .left {
+  flex: 1;
+  background: linear-gradient(135deg, #1976d2, #6a11cb);
+  color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-card .left h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Right side */
+.login-card .right {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.login-card .right h3 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Inputs */
+.form-control {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* Password wrapper */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper .toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+}
+
+/* Forgot password */
+.forgot {
+  text-align: right;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.forgot a {
+  font-size: 14px;
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #1976d2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #125ca1;
+}
+
+/* Forgot password alignment */
+.forgot {
+  text-align: right;
+  margin: 8px 0 16px;
+}
+
+.forgot a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Button style */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #1976d2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #125ca1;
+}
+
 
 /* ------------------------------
    Universal Form Styling

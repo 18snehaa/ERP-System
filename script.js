@@ -2,6 +2,7 @@
 // Common JS for all pages
 // -------------------------
 document.addEventListener("DOMContentLoaded", () => {
+
   /** -------------------------
    * Navbar + Header
    * ------------------------- */
@@ -85,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*-------------------------
-  Dashboard Cards - Dynamic Data
+    Dashboard Sidebar Toggle
   -------------------------*/
   const menuToggle = document.getElementById("menuToggle");
   const sidebar = document.getElementById("sidebar");
@@ -94,66 +95,51 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebar.classList.toggle("open");
     });
   }
-   
-   /** -------------------------
- * Login Page Password Toggle + Strength
- * ------------------------- */
-const loginForm = document.getElementById("loginForm");
-const loginPassword = document.getElementById("loginPassword");
-const toggleLoginPassword = document.getElementById("toggleLoginPassword");
-const loginStrength = document.getElementById("passwordStrength");
 
-const strongRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_$!%*?&])[A-Za-z\d@_$!%*?&]{8,}$/;
+  /** -------------------------
+   * Login Page - Password Toggle + Strength
+   * ------------------------- */
+  const togglePassword = document.querySelector('.toggle-password');
+  const passwordField = document.querySelector('input[name="password"]');
+  const loginStrength = document.getElementById('loginStrength');
+  const loginForm = document.getElementById('loginForm');
+  const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
-if (toggleLoginPassword && loginPassword) {
-  // 👁️ Toggle visibility
-  toggleLoginPassword.addEventListener("click", function () {
-    const type = loginPassword.type === "password" ? "text" : "password";
-    loginPassword.type = type;
+  if (togglePassword && passwordField) {
+    togglePassword.addEventListener('click', () => {
+      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordField.setAttribute('type', type);
+      togglePassword.classList.toggle('fa-eye-slash');
+    });
+  }
 
-    const icon = this.querySelector("i");
-    if (icon) {
-      icon.classList.toggle("fa-eye");
-      icon.classList.toggle("fa-eye-slash");
-    }
-  });
-
-  // Password strength indicator
-  loginPassword.addEventListener("input", () => {
-    if (!loginPassword.value) {
-      if (loginStrength) loginStrength.textContent = "";
-      return;
-    }
-    if (strongRegex.test(loginPassword.value)) {
-      if (loginStrength) {
-        loginStrength.textContent = "✅ Strong password";
-        loginStrength.style.color = "green";
+  if (passwordField && loginStrength) {
+    passwordField.addEventListener('input', () => {
+      const val = passwordField.value;
+      if (!val) {
+        loginStrength.textContent = '';
+        return;
       }
-    } else {
-      if (loginStrength) {
-        loginStrength.textContent =
-          "⚠️ Use 8+ chars with upper, lower, number & symbol";
-        loginStrength.style.color = "red";
-      }
-    }
-  });
-
-  // Prevent weak passwords on submit
-  if (loginForm) {
-    loginForm.addEventListener("submit", e => {
-      if (!strongRegex.test(loginPassword.value)) {
-        e.preventDefault();
-        if (loginStrength) {
-          loginStrength.textContent = "❌ Please enter a strong password!";
-          loginStrength.style.color = "red";
-        }
+      if (strongRegex.test(val)) {
+        loginStrength.textContent = '✅ Strong password';
+        loginStrength.style.color = 'green';
+      } else {
+        loginStrength.textContent = '⚠️ Use 8+ chars with upper, lower, number & symbol';
+        loginStrength.style.color = 'red';
       }
     });
   }
-}
 
-  
+  if (loginForm && passwordField && loginStrength) {
+    loginForm.addEventListener('submit', e => {
+      if (!strongRegex.test(passwordField.value)) {
+        e.preventDefault();
+        loginStrength.textContent = '❌ Please enter a strong password!';
+        loginStrength.style.color = 'red';
+      }
+    });
+  }
+
   /** -------------------------
    * Report Page (generate_report.php)
    * ------------------------- */
@@ -236,23 +222,17 @@ if (toggleLoginPassword && loginPassword) {
   }
 
   /** -------------------------
-   * Datepicker
+   * Datepicker & Print
    * ------------------------- */
-  document.addEventListener("DOMContentLoaded", () => {
- 
   const dateInput = document.getElementById("pageDate");
   if (dateInput) {
     const today = new Date().toISOString().split("T")[0];
     dateInput.value = today;
   }
 
-  // Print functionality
   const printBtn = document.getElementById("printBtn");
   if (printBtn) {
-    printBtn.addEventListener("click", () => {
-      window.print();
-    });
+    printBtn.addEventListener("click", () => window.print());
   }
-});
 
 });

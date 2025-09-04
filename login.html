@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Raiban ERP</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+    <!-- Left Section -->
+    <div class="left">
+      <h2>Welcome to Raiban Electrical Solutions ERP</h2>
+      <p>Manage your inventory and generate reports in real-time with our ERP system. Please sign in to continue.</p>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="RLogo.png" alt="Raiban Logo">
+      </div>
+
+      <h3>Sign In</h3>
+      <form id="loginForm" action="#" method="POST">
+        <!-- Email -->
+<input type="email" class="form-control" name="email" placeholder="Email" required>
+
+<!-- Password with toggle -->
+<div class="password-wrapper">
+  <input type="password" class="form-control" name="password" placeholder="Password" required>
+  <i class="fa-solid fa-eye toggle-password"></i>
+</div>
+
+        <!-- Password strength indicator -->
+        <span id="loginStrength" class="password-strength"></span>
+
+        <!-- Forgot Password -->
+        <div class="forgot">
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- External JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
